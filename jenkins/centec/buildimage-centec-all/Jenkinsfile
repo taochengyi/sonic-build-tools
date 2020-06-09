@@ -34,10 +34,10 @@ pipeline {
 git submodule foreach --recursive '[ -f .git ] && echo "gitdir: $(realpath --relative-to=. $(cut -d" " -f2 .git))" > .git'
 
 make configure PLATFORM=centec
-make SONIC_CONFIG_BUILD_JOBS=1 INSTALL_DEBUG_TOOLS=y target/sonic-centec.bin
+make SONIC_BUILD_JOBS=1 INSTALL_DEBUG_TOOLS=y target/sonic-centec.bin
 mv target/sonic-centec.bin target/sonic-centec-dbg.bin
-make SONIC_CONFIG_BUILD_JOBS=1 target/sonic-centec.bin
-make SONIC_CONFIG_BUILD_JOBS=1 ENABLE_SYNCD_RPC=y target/docker-syncd-centec-rpc.gz
+make SONIC_BUILD_JOBS=1 target/sonic-centec.bin
+make SONIC_BUILD_JOBS=1 ENABLE_SYNCD_RPC=y target/docker-syncd-centec-rpc.gz
 '''
             }
         }
